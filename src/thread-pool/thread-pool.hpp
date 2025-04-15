@@ -42,6 +42,7 @@ private:
     // these mutex and var are for modifying the task queue
     std::mutex mtx;
     std::condition_variable cond;
+    bool stop;
     void workerLoop();
 
 public:
@@ -49,6 +50,7 @@ public:
     ~ThreadPool();
     void addTask(const std::function<void()> &task);
     std::function<void()> popTask();
+    size_t getTotalTasks();
 };
 
 #endif
